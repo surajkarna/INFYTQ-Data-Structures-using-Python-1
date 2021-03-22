@@ -1,4 +1,5 @@
 #lex_auth_012742507648933888867
+#1 test case failed
 class Node:
     def __init__(self,data):
         self.__data=data
