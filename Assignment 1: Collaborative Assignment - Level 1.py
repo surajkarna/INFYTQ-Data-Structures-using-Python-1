@@ -1,5 +1,5 @@
 #DSA-Assgn-1
-
+#suraj chutiya
 def merge_list(list1, list2):
     merged_data=""
     #write your logic here
