@@ -121,33 +121,83 @@ class Ball:
     def get_name(self):
         return self.__name
 
-class game:
+class Game:
     def __init__(self,ball_stack):
         self.ball_container=ball_stack
-        self.red_balls_container=Queue(2)
-        self.blue_balls_container=Queue(2)
-        self.yellow_balls_container=Queue(2)
-        self.green_balls_container=Queue(2)
+        self.red_balls_container=Stack(2)
+        self.blue_balls_container=Stack(2)
+        self.yellow_balls_container=Stack(2)
+        self.green_balls_container=Stack(2)
         
     def grouping_based_on_color(self):
         temp_stack=self.ball_container
         while(not temp_stack.is_empty()):
             data=temp_stack.pop()
             if(data.get_color()=="Red"):
-                self.red_balls_container.enqueue(data)
+                self.red_balls_container.push(data)
             elif(data.get_color()=="Blue"):
-                self.blue_balls_container.enqueue(data)
+                self.blue_balls_container.push(data)
             elif(data.get_color()=="Yellow"):
-                self.yellow_balls_container.enqueue(data)
+                self.yellow_balls_container.push(data)
             elif(data.get_color()=="Green"):
-                self.green_balls_container.enqueue(data)
+                self.green_balls_container.push(data)
                 
     def rearrange_balls(self,color):
-        pass
+        if(color=="Red"):
+            data=self.red_balls_container.pop()
+            if(data.get_name()=="A"):
+                self.red_balls_container.push(data)
+            else:
+                temp_queue=Queue(2)
+                temp_queue.enqueue(data)
+                temp_queue.enqueue(self.red_balls_container.pop())
+            if(self.red_balls_container.is_empty()):
+                while(not self.red_balls_container.is_full()):
+                    self.red_balls_container.push(temp_queue.dequeue())
+        elif(color=="Blue"):
+            data=self.blue_balls_container.pop()
+            if(data.get_name()=="A"):
+                self.blue_balls_container.push(data)
+            else:
+                temp_queue=Queue(2)
+                temp_queue.enqueue(data)
+                temp_queue.enqueue(self.blue_balls_container.pop())
+            if(self.blue_balls_container.is_empty()):
+                while(not self.blue_balls_container.is_full()):
+                    self.blue_balls_container.push(temp_queue.dequeue())
+        elif(color=="Yellow"):
+            data=self.yellow_balls_container.pop()
+            if(data.get_name()=="A"):
+                self.yellow_balls_container.push(data)
+            else:
+                temp_queue=Queue(2)
+                temp_queue.enqueue(data)
+                temp_queue.enqueue(self.yellow_balls_container.pop())
+            if(self.yellow_balls_container.is_empty()):
+                while(not self.yellow_balls_container.is_full()):
+                    self.yellow_balls_container.push(temp_queue.dequeue())
+        elif(color=="Green"):
+            data=self.green_balls_container.pop()
+            if(data.get_name()=="A"):
+                self.green_balls_container.push(data)
+            else:
+                temp_queue=Queue(2)
+                temp_queue.enqueue(data)
+                temp_queue.enqueue(self.green_balls_container.pop())
+            if(self.green_balls_container.is_empty()):
+                while(not self.green_balls_container.is_full()):
+                    self.green_balls_container.push(temp_queue.dequeue())
     
     def display_ball_details(self,color):
-        pass
-        
+        if(color=="Red"):
+            self.red_balls_container.display()
+        elif(color=="Blue"):
+            self.blue_balls_container.display()
+        elif(color=="Yellow"):
+            self.yellow_balls_container.display()
+        elif(color=="Green"):
+            self.green_balls_container.display()
+#Implement Game class here
 
 #Use different values to test your program
 ball1=Ball("Red","A")
